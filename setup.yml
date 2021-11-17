@@ -1,0 +1,9 @@
+---
+
+- hosts: webserver
+
+  roles:
+    - apache
+    - mysql
+    - php
+...
