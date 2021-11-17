@@ -1,0 +1,23 @@
+---
+
+- hosts: webserver
+
+  tasks:
+  - name: stop apahce
+    service:
+      name: httpd
+      state: stopped
+
+
+  - name: remove file
+    file:
+      path: /var/www/html/index.html
+      state: absent
+
+
+  - name: uninstall apache
+    yum:
+      name: httpd
+      state: absent
+
+...

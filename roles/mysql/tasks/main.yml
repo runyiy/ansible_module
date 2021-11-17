@@ -1,0 +1,22 @@
+---
+# tasks file for mysql
+
+- name: Install MySQL 5.7 repo
+  yum:
+    name: http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm
+    state: present
+
+
+- name: Installing MySQL 5.7
+  package:
+    name: mysql-community-server
+    state: present
+
+#- name: Start MySQL
+#  service:
+#    name: mysqld
+#    state: started
+#    enabled: true
+
+
+...

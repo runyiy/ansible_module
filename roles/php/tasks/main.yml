@@ -1,0 +1,13 @@
+---
+# tasks file for php
+
+
+- name: installing PHP
+  yum:
+    name: "{{ item }}"
+    state: installed
+  loop:
+    - php
+    - php-mysql
+
+...

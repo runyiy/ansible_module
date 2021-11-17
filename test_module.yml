@@ -1,0 +1,45 @@
+---
+- hosts: 192.168.2.30
+
+
+  tasks:
+#  - name: update all packages to latest version
+#   apt:
+#      name: "*"
+#      state: latest
+
+#  - name: add user 'test' with a bash shell
+#    user:
+#      name: test
+#      shell: /bin/bash
+#      group: admins,test
+#      append: yes
+#
+  - name: cat the content of index
+    command: cat index.html
+    register: cat_index
+
+  - name: debug the cat
+    debug:
+      msg:
+      - "{{ cat_index.stdout_lines | quote }}"
+
+  - name: check the difference stdout_lines
+    debug:
+      msg: "{{cat_index | regex_replace('\"', '')}}"
+
+  - name: check the difference stdout_lines
+    debug:
+      msg: "{{cat_index.stdout_lines | regex_replace('\"', '')}}"
+
+
+  - name: check content of index
+    assert:
+      that:
+        - "'it is true!' in cat_index.stdout_lines"
+
+  - name: if "it" in the content
+    debug:
+      msg: "String matched"
+    when: cat_index.stdout is search('it')
+...
