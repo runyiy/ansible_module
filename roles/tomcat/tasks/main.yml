@@ -1,0 +1,22 @@
+---
+# tasks file for tomcat
+
+- name: install JDK
+  yum:
+    name: java
+    state: latest
+
+- name: install tomcat
+  yum:
+    name: tomcat
+    state: latest
+
+- name: copy tomcat-users.xml
+  copy:
+    src: tomcat-users.xml
+    dest: /usr/share/tomcat/conf/tomcat-users.xml
+
+- name: start the server
+  service:
+    name: tomcat
+    state: started

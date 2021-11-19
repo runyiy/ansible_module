@@ -12,7 +12,7 @@
 
   - name: create the indexfile
     shell: touch /tmp/index.html
-    when: checkindex.stat.exists == "false"
+    when: checkindex.stat.exists == 'false'
 
   - name: add content indexfile
     shell: echo "Hello world"> /tmp/index.html
