@@ -2,5 +2,7 @@
 - hosts: 192.168.2.30
   become: yes
   become_user: jenkins
+  vars:
+    ansible_become_pass: 123456
   roles:
     - tomcat
