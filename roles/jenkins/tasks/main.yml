@@ -1,2 +1,36 @@
 ---
 # tasks file for jenkins
+- name: check if webapp exists
+  stat:
+    path: "/usr/share/tomcat/webapps/webapp"
+  register: webapp_data
+
+- name: mkdir if backupp no
+  file:
+    path: /opt/backup
+    state: directory
+    mode: '0755'
+
+- name: take a backup if yes
+  command: mv /usr/share/tomcat/webapps/webapp /opt/backup
+  when: webapp_data.stat.exists
+
+- name: take a backup if yes
+  command: mv /usr/share/tomcat/webapps/webapp.war /opt/backup
+  when: webapp_data.stat.exists
+
+- name: append jenkins to tomcat group
+  user:
+    name: jenkins
+    groups: tomcat
+    append: yes
+
+- name: copyWebapp
+  copy:
+    src: /var/lib/jenkins/workspace/TestMavenProject/webapp/target/webapp.war
+    dest: /usr/share/tomcat/webapps/
+
+- name: restart tomcat
+  service:
+    name: tomcat
+    state: restarted
