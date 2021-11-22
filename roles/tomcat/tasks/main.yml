@@ -10,7 +10,14 @@
   yum:
     name: tomcat
     state: latest
-
+- name: install adiitional package
+  yum:
+    name:
+      - tomcat-webapps
+      - tomcat-admin-webapps
+      - tomcat-docs-webaapp
+    state: installed
+    
 - name: copy tomcat-users.xml
   copy:
     src: tomcat-users.xml
