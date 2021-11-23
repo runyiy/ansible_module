@@ -40,7 +40,7 @@
 
 - name: remove if yes
   file:
-    path: /usr/share/tomcat/webapps/webapp.*
+    path: /usr/share/tomcat/webapps/webapp.war
     state: absent
   when: webapp_data.stat.exists
 
