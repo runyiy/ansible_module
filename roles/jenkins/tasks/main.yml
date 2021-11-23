@@ -28,11 +28,15 @@
   when: webapp_data.stat.exists
 
 - name: remove if yes
-  command: rm -rf /usr/share/tomcat/webapps/webapp /opt/backup
+  file:
+    path: /usr/share/tomcat/webapps/webapp
+    state: absent
   when: webapp_data.stat.exists
 
 - name: remove if yes
-  command: rm /usr/share/tomcat/webapps/webapp.war /opt/backup
+  file:
+    path: /usr/share/tomcat/webapps/webapp.war
+    state: absent
   when: webapp_data.stat.exists
 
 - name: append jenkins to tomcat group
