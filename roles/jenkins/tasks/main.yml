@@ -1,5 +1,10 @@
 ---
 # tasks file for jenkins
+- name: stop the server
+  service:
+    name: tomcat
+    state: stopped
+
 - name: check if webapp exists
   stat:
     path: "/usr/share/tomcat/webapps/webapp"
