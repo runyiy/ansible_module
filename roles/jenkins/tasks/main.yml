@@ -27,15 +27,15 @@
     backup: yes
   when: webapp_data.stat.exists
 
-- name: remove if yes
-  file:
-    path: /usr/share/tomcat/webapps/webapp
-    state: absent
-  when: webapp_data.stat.exists
+#- name: remove if yes
+#  file:
+#    path: /usr/share/tomcat/webapps/webapp
+#    state: absent
+#  when: webapp_data.stat.exists
 
 - name: remove if yes
   file:
-    path: /usr/share/tomcat/webapps/webapp.war
+    path: /usr/share/tomcat/webapps/webapp.*
     state: absent
   when: webapp_data.stat.exists
 
@@ -45,10 +45,10 @@
     groups: tomcat
     append: yes
 
-- name: copyWebapp
-  copy:
-    src: /var/lib/jenkins/workspace/maven_test01/webapp/target/webapp.war
-    dest: /usr/share/tomcat/webapps/
+#- name: copyWebapp
+#  copy:
+#    src: /var/lib/jenkins/workspace/maven_test01/webapp/target/webapp.war
+#    dest: /usr/share/tomcat/webapps/
 
 - name: restart tomcat
   service:
