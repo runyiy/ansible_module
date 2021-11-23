@@ -50,10 +50,10 @@
     groups: tomcat
     append: yes
 
-#- name: copyWebapp
-#  copy:
-#    src: /var/lib/jenkins/workspace/maven_test01/webapp/target/webapp.war
-#    dest: /usr/share/tomcat/webapps/
+- name: copyWebapp
+  copy:
+    src: /var/lib/jenkins/workspace/maven_test01/webapp/target/webapp.war
+    dest: /usr/share/tomcat/webapps/
 
 - name: restart tomcat
   service:
