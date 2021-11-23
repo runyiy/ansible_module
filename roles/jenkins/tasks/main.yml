@@ -21,7 +21,7 @@
 
 - name: take a backup if yes
   copy:
-    src: /usr/share/tomcat/webapps/webapp
+    src: /usr/share/tomcat/webapps/webapp.war
     dest: /opt/backup
     remote_src: yes
     backup: yes
