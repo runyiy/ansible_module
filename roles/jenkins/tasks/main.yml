@@ -12,11 +12,27 @@
     mode: '0755'
 
 - name: take a backup if yes
-  command: mv /usr/share/tomcat/webapps/webapp /opt/backup
+  copy:
+    src: /usr/share/tomcat/webapps/webapp
+    dest: /opt/backup
+    remote_src: yes
+    backup: yes
   when: webapp_data.stat.exists
 
 - name: take a backup if yes
-  command: mv /usr/share/tomcat/webapps/webapp.war /opt/backup
+  copy:
+    src: /usr/share/tomcat/webapps/webapp
+    dest: /opt/backup
+    remote_src: yes
+    backup: yes
+  when: webapp_data.stat.exists
+
+- name: remove if yes
+  command: rm -rf /usr/share/tomcat/webapps/webapp /opt/backup
+  when: webapp_data.stat.exists
+
+- name: remove if yes
+  command: rm /usr/share/tomcat/webapps/webapp.war /opt/backup
   when: webapp_data.stat.exists
 
 - name: append jenkins to tomcat group
